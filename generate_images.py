@@ -24,7 +24,7 @@ def create_real_gauge(filename, title, unit, ticks, is_rpm=False):
 
     num_ticks = len(ticks)
     start_angle = 140
-    end_angle = 400  # 260 stopni obrotu
+    end_angle = 400  
     
     for i, label in enumerate(ticks):
         current_angle = start_angle + (i / (num_ticks - 1)) * (end_angle - start_angle)
@@ -47,7 +47,6 @@ def create_real_gauge(filename, title, unit, ticks, is_rpm=False):
         th = bbox[3] - bbox[1]
         draw.text((tx - tw/2, ty - th/2), str(label), fill="#ffffff", font=font)
 
-    # Czerwone pole (redline) od wartości 24 do 30
     if is_rpm:
         red_start_angle = start_angle + (4 / (num_ticks - 1)) * (end_angle - start_angle)
         for a in range(int(red_start_angle), int(end_angle)):
@@ -62,9 +61,8 @@ def create_real_gauge(filename, title, unit, ticks, is_rpm=False):
     draw.text((center - 45, center + 35), unit, fill="#666666", font=font_title)
 
     img.save(f'static/img/{filename}', 'PNG')
-    print(f"Wygenerowano: static/img/{filename}")
+    print(f"Generated: static/img/{filename}")
 
-# Generowanie poprawnych grafik
 create_real_gauge('speed.png', 'SPEED', 'km/h', [0, 20, 40, 60, 80, 100, 120, 140])
 create_real_gauge('rpm.png', 'RPM', 'x100 r/min', [0, 6, 12, 18, 24, 30], is_rpm=True)
 create_real_gauge('fuel.png', 'FUEL', '1/1', ['0', '1/4', '1/2', '3/4', '1/1'])
