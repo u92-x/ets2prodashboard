@@ -4,7 +4,7 @@ import json
 
 app = Flask(__name__)
 
-ETS2_API_URL = "http://localhost:25555/api/ets2"
+ETS2_API_URL = "http://localhost:25555/api/ets2/telemetry"
 
 @app.route('/')
 def index():
